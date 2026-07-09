@@ -1,13 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router";
 import { ChevronRight, ArrowRight } from "lucide-react";
-const Navbar = ({ children }: { children?: React.ReactNode }) => (
-  <nav>{children}</nav>
-);
-
-const Footer = ({ children }: { children?: React.ReactNode }) => (
-  <footer>{children}</footer>
-);
+import { Footer, Navbar } from "./Landing";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 

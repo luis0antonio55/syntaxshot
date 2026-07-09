@@ -18,6 +18,7 @@ import {
 
 const NAV_LINKS = [
   { label: "Docs", to: "/docs" },
+  { label: "Support", to: "/support" },
   { label: "GitHub", to: "https://github.com/luis0antonio55/syntaxshot" },
 ];
 
@@ -104,6 +105,12 @@ const PRO_BILLING = [
   { id: "quarterly", label: "Quarterly", price: "$18", sub: "per 3 months" },
   { id: "annual", label: "Annual", price: "$60", sub: "per year" },
 ] as const;
+
+const STRIPE_PAYMENT_LINKS: Record<BillingId, string> = {
+  monthly: "https://buy.stripe.com/eVq5kC76Ce7dgLk38W5gc03",
+  quarterly: "https://buy.stripe.com/8x29ASdv01kr3YydNA5gc05",
+  annual: "https://buy.stripe.com/4gMcN476C9QX2Uu4d05gc04",
+};
 
 type BillingId = (typeof PRO_BILLING)[number]["id"];
 
@@ -359,6 +366,7 @@ export default function Landing() {
   };
 
   const selected = PRO_BILLING.find((b) => b.id === billing)!;
+  const selectedPaymentLink = STRIPE_PAYMENT_LINKS[billing];
 
   return (
     <div className="min-h-screen bg-background text-foreground" style={{ fontFamily: "'Inter', sans-serif" }}>
@@ -630,12 +638,15 @@ export default function Landing() {
                   </li>
                 ))}
               </ul>
-              <button
-                className="w-full py-2.5 rounded text-sm font-semibold transition-all hover:opacity-90 active:scale-95"
+              <a
+                href={selectedPaymentLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-2.5 rounded text-sm font-semibold transition-all hover:opacity-90 active:scale-95 text-center"
                 style={{ background: "#00e676", color: "#080808", fontFamily: "'Outfit', sans-serif" }}
               >
                 Get Pro — {selected.price} / {selected.label.toLowerCase()}
-              </button>
+              </a>
             </div>
           </div>
 
