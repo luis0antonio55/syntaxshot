@@ -208,7 +208,7 @@ export default function Support() {
                 <button
                   type="button"
                   onClick={handleCopyEmail}
-                  className="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg text-sm transition-colors"
+                  className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-lg text-sm transition-colors"
                   style={{
                     background: "rgba(255,255,255,0.04)",
                     border: "1px solid rgba(255,255,255,0.06)",
@@ -411,11 +411,15 @@ export default function Support() {
                   placeholder="Tell us what happened, what you expected, and how we can help."
                 />
               </Field>
-              <Turnstile
-                sitekey={import.meta.env.VITE_TURNSTILE_SITE_KEY!}
-                onVerify={(token) => setToken(token)}
-                theme="dark"
-              />
+              <div className="w-full overflow-hidden flex justify-center sm:justify-start">
+                <div className="origin-top scale-[0.88] sm:scale-100">
+                  <Turnstile
+                    sitekey={import.meta.env.VITE_TURNSTILE_SITE_KEY!}
+                    onVerify={(token) => setToken(token)}
+                    theme="dark"
+                  />
+                </div>
+              </div>
               <button
                 type="submit"
                 disabled={status === "sending" || !token}

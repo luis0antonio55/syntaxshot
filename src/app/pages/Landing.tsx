@@ -273,8 +273,8 @@ export function Navbar({ activePath }: { activePath?: string }) {
 export function Footer() {
   return (
     <footer className="border-t border-border py-10 px-6">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-        <div className="flex items-center gap-2">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:items-center justify-between gap-6">
+        <div className="flex w-full items-center justify-center gap-2 md:w-auto md:justify-start">
           <Camera size={15} style={{ color: "#00e676" }} />
           <span
             className="text-sm font-semibold"
@@ -284,7 +284,7 @@ export function Footer() {
           </span>
           <span className="text-xs ml-2" style={{ color: "#333" }}>© 2026</span>
         </div>
-        <nav className="flex flex-wrap gap-6">
+        <nav className="flex w-full flex-wrap justify-center gap-x-6 gap-y-2 md:w-auto md:justify-end md:gap-6">
           {NAV_LINKS.map((l) =>
             l.to && l.to.startsWith("http") ? (
               <a
