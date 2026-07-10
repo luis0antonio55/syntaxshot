@@ -1,6 +1,7 @@
 //src/app/pages/Support.tsx
 import { useState } from "react";
 import { Link } from "react-router";
+import { useSeo } from "../hooks/useSeo";
 import {
   ArrowRight,
   Check,
@@ -63,6 +64,12 @@ function Field({
 }
 
 export default function Support() {
+  useSeo({
+    title: "Support — SyntaxShot",
+    description:
+      "Need help with SyntaxShot? Contact our support team for CLI issues, billing, or feature requests.",
+    path: "/support",
+  });
   const [form, setForm] = useState<FormState>(INITIAL_FORM);
   const [copied, setCopied] = useState(false);
   const [status, setStatus] = useState<
