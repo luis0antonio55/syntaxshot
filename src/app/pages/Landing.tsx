@@ -515,8 +515,7 @@ export default function Landing() {
               className="text-lg leading-relaxed max-w-md"
               style={{ color: "#777" }}
             >
-              Generate real syntax-highlighted images without touching a
-              browser. One command per file on Free, full folder scan on Pro.
+              Generate beautiful syntax-highlighted code screenshots with a single command. Free to get started.
             </p>
 
             <div
