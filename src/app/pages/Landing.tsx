@@ -102,15 +102,15 @@ const FEATURE_CARDS = [
 ];
 
 const PRO_BILLING = [
-  { id: "monthly", label: "Monthly", price: "$7", sub: "per month" },
-  { id: "quarterly", label: "Quarterly", price: "$18", sub: "per 3 months" },
-  { id: "annual", label: "Annual", price: "$60", sub: "per year" },
+  { id: "monthly", label: "Monthly", price: "$5", sub: "per month" },
+  { id: "quarterly", label: "Quarterly", price: "$13", sub: "per 3 months" },
+  { id: "annual", label: "Annual", price: "$35", sub: "per year" },
 ] as const;
 
 const STRIPE_PAYMENT_LINKS: Record<BillingId, string> = {
-  monthly: "https://buy.stripe.com/eVq5kC76Ce7dgLk38W5gc03",
-  quarterly: "https://buy.stripe.com/8x29ASdv01kr3YydNA5gc05",
-  annual: "https://buy.stripe.com/4gMcN476C9QX2Uu4d05gc04",
+  monthly: "https://buy.stripe.com/cNi4gybmSbZ5dz85h45gc08",
+  quarterly: "https://buy.stripe.com/14A7sKaiO4wD9iSgZM5gc07",
+  annual: "https://buy.stripe.com/3cI6oGgHc8MT0MmeRE5gc06",
 };
 
 type BillingId = (typeof PRO_BILLING)[number]["id"];
@@ -426,7 +426,7 @@ export default function Landing() {
   useSeo({
     title: "SyntaxShot — Code Screenshots from Your Terminal",
     description:
-      "Generate syntax-highlighted code screenshots straight from your CLI. One command per file on Free, full folder scans on Pro.",
+      "Generate beautiful syntax-highlighted code screenshots with a single command. Free to get started.",
     path: "/",
   });
   const [billing, setBilling] = useState<BillingId>("monthly");
@@ -915,6 +915,9 @@ export default function Landing() {
                 </p>
                 <p className="text-xs" style={{ color: "#555" }}>
                   Activate with a license key on any machine.
+                </p>
+                 <p className="text-xs" style={{ color: "#555" }}>
+                  Special Launch Prices!
                 </p>
               </div>
               <div className="space-y-2">
