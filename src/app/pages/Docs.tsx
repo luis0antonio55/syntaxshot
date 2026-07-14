@@ -600,9 +600,6 @@ npm link
           <Warn>
             The Free plan caps at{" "}
             <strong style={{ color: "#f0f0f0" }}>10 screenshots</strong> total.
-            The counter is stored in{" "}
-            <InlineCode>.syntaxshot-usage.json</InlineCode> in the folder where
-            you run the command.
           </Warn>
 
           <Divider />
@@ -781,26 +778,59 @@ Generate 31 images? (y/N)`}</CodeBlock>
           {/* ── Themes ── */}
           <SectionTitle id="themes">Themes</SectionTitle>
           <Para>
-            Three themes ship with the CLI. Pro users receive new themes as
-            they're released.
+            3 themes ship free with the CLI. Pro unlocks all 8 today — plus
+            every new theme we release after that, at no extra cost.
           </Para>
 
-          <div className="grid grid-cols-3 gap-3 my-6">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 my-6">
             {[
               {
                 name: "midnight",
-                desc: "Dracula-style palette, dark violet window",
-                colors: ["#282a36", "#c792ea", "#c3e88d", "#f07178"],
+                plan: "Free",
+                desc: "Dracula-style, dark violet window",
+                colors: ["#bd93f9", "#ff79c6", "#50fa7b", "#f1fa8c", "#8be9fd"],
               },
               {
                 name: "nord",
+                plan: "Free",
                 desc: "Nord palette, blue-gray window",
-                colors: ["#2e3440", "#88c0d0", "#a3be8c", "#bf616a"],
+                colors: ["#88c0d0", "#81a1c1", "#a3be8c", "#ebcb8b", "#8fbcbb"],
+              },
+              {
+                name: "paper",
+                plan: "Free",
+                desc: "Paper, minimal light",
+                colors: ["#cf222e", "#0550ae", "#8250df", "#953800", "#1f2328"],
+              },
+              {
+                name: "owl",
+                plan: "Pro",
+                desc: "Night Owl, teal & navy",
+                colors: ["#c792ea", "#82aaff", "#ecc48d", "#ff5874", "#d6deeb"],
               },
               {
                 name: "solar",
+                plan: "Pro",
                 desc: "Solarized Light, warm window",
-                colors: ["#fdf6e3", "#268bd2", "#859900", "#dc322f"],
+                colors: ["#268bd2", "#859900", "#b58900", "#2aa198", "#657b83"],
+              },
+              {
+                name: "mocha",
+                plan: "Pro",
+                desc: "Catppuccin Mocha",
+                colors: ["#cba6f7", "#89b4fa", "#a6e3a1", "#eba0ac", "#94e2d5"],
+              },
+              {
+                name: "onedark",
+                plan: "Pro",
+                desc: "Atom One Dark",
+                colors: ["#c678dd", "#61afef", "#98c379", "#e5c07b", "#e06c75"],
+              },
+              {
+                name: "tokyonight",
+                plan: "Pro",
+                desc: "Tokyo Night",
+                colors: ["#9d7cd8", "#7aa2f7", "#9ece6a", "#e0af68", "#bb9af7"],
               },
             ].map((t) => (
               <div
@@ -811,14 +841,29 @@ Generate 31 images? (y/N)`}</CodeBlock>
                   border: "1px solid rgba(255,255,255,0.07)",
                 }}
               >
-                <div className="flex gap-1.5">
-                  {t.colors.map((c) => (
-                    <span
-                      key={c}
-                      className="w-4 h-4 rounded-full"
-                      style={{ background: c }}
-                    />
-                  ))}
+                <div className="flex items-center justify-between">
+                  <div className="flex gap-1.5">
+                    {t.colors.map((c) => (
+                      <span
+                        key={c}
+                        className="w-4 h-4 rounded-full"
+                        style={{ background: c }}
+                      />
+                    ))}
+                  </div>
+                  <span
+                    className="text-[8px] font-semibold px-2 py-0.5 rounded-full shrink-0"
+                    style={{
+                      background:
+                        t.plan === "Pro"
+                          ? "rgba(0,230,118,0.1)"
+                          : "rgba(255,255,255,0.05)",
+                      color: t.plan === "Pro" ? "#00e676" : "#555",
+                      fontFamily: "'JetBrains Mono', monospace",
+                    }}
+                  >
+                    {t.plan}
+                  </span>
                 </div>
                 <p
                   className="text-xs font-semibold"
@@ -842,6 +887,10 @@ Generate 31 images? (y/N)`}</CodeBlock>
             Apply a theme for a single run without changing your config:
           </Para>
           <CodeBlock>{`syntaxshot file.ts --theme nord`}</CodeBlock>
+          <Para>
+            Free plan trying a Pro theme gets a clear message pointing back to
+            midnight, nord, or solar — nothing silently fails.
+          </Para>
 
           <Divider />
 

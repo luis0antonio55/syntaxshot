@@ -1025,7 +1025,7 @@ export default function Landing() {
               }}
             >
               Everything you need,{" "}
-              <span style={{ color: "#333" }}>nothing you don't.</span>
+              <span style={{ color: "#00e676" }}>nothing you don't.</span>
             </h2>
           </div>
           <div
