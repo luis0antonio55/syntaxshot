@@ -103,9 +103,9 @@ const FEATURE_CARDS = [
 ];
 
 const PRO_BILLING = [
-  { id: "monthly", label: "Monthly", price: "$5", sub: "per month" },
-  { id: "quarterly", label: "Quarterly", price: "$13", sub: "per 3 months" },
-  { id: "annual", label: "Annual", price: "$35", sub: "per year" },
+  { id: "monthly", label: "Monthly", price: "$5", oldPrice: "$7", sub: "per month" },
+  { id: "quarterly", label: "Quarterly", price: "$13", oldPrice: "$18", sub: "per 3 months" },
+  { id: "annual", label: "Annual", price: "$35", oldPrice: "$60", sub: "per year" },
 ] as const;
 
 const STRIPE_PAYMENT_LINKS: Record<BillingId, string> = {
@@ -1243,6 +1243,12 @@ export default function Landing() {
                       className="flex items-baseline gap-1"
                       style={{ fontFamily: "'Outfit', sans-serif" }}
                     >
+                      <span
+                        className="text-xs line-through"
+                        style={{ color: "#555" }}
+                      >
+                        {b.oldPrice}
+                      </span>
                       <span
                         className="font-bold text-lg"
                         style={{
