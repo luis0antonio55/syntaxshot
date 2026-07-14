@@ -28,7 +28,7 @@ const HOW_IT_WORKS = [
   {
     step: "01",
     title: "Install",
-    cmd: "npm install -g syntaxshot",
+    cmd: "npm i syntaxshot-cli",
     desc: "One-time global install. Ships prebuilt binaries — no Cairo, GTK or Visual Studio Build Tools needed.",
   },
   {
@@ -766,7 +766,7 @@ export default function Landing() {
 
   const copyInstallCommand = async (id: string) => {
     try {
-      await navigator.clipboard.writeText("npm install -g syntaxshot-cli");
+      await navigator.clipboard.writeText("npm i syntaxshot-cli");
       setCopiedId(id);
     } catch {
       // ignore
@@ -855,7 +855,7 @@ export default function Landing() {
                 >
                   <Clipboard size={13} /> Try for free:
                   <br />
-                  npm install -g syntaxshot-cli
+                  npm i syntaxshot-cli
                 </button>
                 <span
                   className={`text-[11px] font-medium ml-3 transition-opacity duration-200 ${copiedId === "hero" ? "opacity-100" : "opacity-0"}`}
@@ -1165,7 +1165,7 @@ export default function Landing() {
                 >
                   Try for free:
                   <br />
-                  npm install -g syntaxshot-cli
+                  npm i syntaxshot-cli
                 </button>
                 <span
                   className={`text-[11px] font-medium absolute right-3 top-3 transition-opacity duration-200 ${copiedId === "pricing-free" ? "opacity-100" : "opacity-0"}`}
@@ -1369,7 +1369,7 @@ export default function Landing() {
               >
                 <Clipboard size={13} /> Try for free:
                 <br />
-                npm install -g syntaxshot-cli <ArrowRight size={14} />
+                npm i syntaxshot-cli <ArrowRight size={14} />
               </button>
               <span
                 className={`text-[11px] font-medium ml-3 transition-opacity duration-200 ${copiedId === "cta" ? "opacity-100" : "opacity-0"}`}
