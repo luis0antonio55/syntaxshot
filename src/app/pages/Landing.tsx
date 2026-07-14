@@ -853,9 +853,7 @@ export default function Landing() {
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded text-sm font-medium border border-border transition-all hover:border-white/20"
                   style={{ color: "#888", fontFamily: "'Outfit', sans-serif" }}
                 >
-                  <Clipboard size={13} /> Try for free:
-                  <br />
-                  npm i syntaxshot-cli
+                  <Clipboard size={13} /> Try for free: npm i syntaxshot-cli
                 </button>
                 <span
                   className={`text-[11px] font-medium ml-3 transition-opacity duration-200 ${copiedId === "hero" ? "opacity-100" : "opacity-0"}`}
@@ -1161,10 +1159,9 @@ export default function Landing() {
                     background: "rgba(255,255,255,0.05)",
                     color: "#f0f0f0",
                     border: "1px solid rgba(255,255,255,0.08)",
+                    cursor: "pointer",
                   }}
                 >
-                  Try for free:
-                  <br />
                   npm i syntaxshot-cli
                 </button>
                 <span
@@ -1367,9 +1364,7 @@ export default function Landing() {
                   fontFamily: "'Outfit', sans-serif",
                 }}
               >
-                <Clipboard size={13} /> Try for free:
-                <br />
-                npm i syntaxshot-cli <ArrowRight size={14} />
+                <Clipboard size={13} /> Copy install command <ArrowRight size={14} />
               </button>
               <span
                 className={`text-[11px] font-medium ml-3 transition-opacity duration-200 ${copiedId === "cta" ? "opacity-100" : "opacity-0"}`}
