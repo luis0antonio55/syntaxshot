@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router";
 import { useSeo } from "../hooks/useSeo";
+
 import {
   Check,
   Camera,
@@ -279,6 +280,298 @@ const CODE_LINES = [
   { tokens: [{ text: "}", color: "#f0f0f0" }] },
 ];
 
+// ─── Themes data ─────────────────────────────────────────────────────────────
+
+const THEMES = [
+  {
+    name: "midnight",
+    plan: "Free",
+    bg: "#161327",
+    accent: "#bd93f9",
+    desc: "Dracula-style, dark violet",
+    swatches: ["#bd93f9", "#ff79c6", "#50fa7b", "#f1fa8c", "#8be9fd"],
+  },
+  {
+    name: "nord",
+    plan: "Free",
+    bg: "#2e3440",
+    accent: "#88c0d0",
+    desc: "Nord palette, blue-gray",
+    swatches: ["#88c0d0", "#81a1c1", "#a3be8c", "#ebcb8b", "#8fbcbb"],
+  },
+  {
+    name: "paper",
+    plan: "Free",
+    bg: "#ffffff",
+    accent: "#0550ae",
+    desc: "Paper, minimal light",
+    swatches: ["#cf222e", "#0550ae", "#8250df", "#953800", "#1f2328"],
+  },
+  {
+    name: "owl",
+    plan: "Pro",
+    bg: "#011627",
+    accent: "#82aaff",
+    desc: "Night Owl, teal & navy",
+    swatches: ["#c792ea", "#82aaff", "#ecc48d", "#ff5874", "#d6deeb"],
+  },
+  {
+    name: "solar",
+    plan: "Pro",
+    bg: "#fdf6e3",
+    accent: "#268bd2",
+    desc: "Solarized Light, warm",
+    swatches: ["#268bd2", "#859900", "#b58900", "#2aa198", "#657b83"],
+  },
+  {
+    name: "mocha",
+    plan: "Pro",
+    bg: "#1e1e2e",
+    accent: "#cba6f7",
+    desc: "Catppuccin Mocha",
+    swatches: ["#cba6f7", "#89b4fa", "#a6e3a1", "#eba0ac", "#94e2d5"],
+  },
+  {
+    name: "onedark",
+    plan: "Pro",
+    bg: "#282c34",
+    accent: "#61afef",
+    desc: "Atom One Dark",
+    swatches: ["#c678dd", "#61afef", "#98c379", "#e5c07b", "#e06c75"],
+  },
+  {
+    name: "tokyonight",
+    plan: "Pro",
+    bg: "#1a1b26",
+    accent: "#7aa2f7",
+    desc: "Tokyo Night",
+    swatches: ["#9d7cd8", "#7aa2f7", "#9ece6a", "#e0af68", "#bb9af7"],
+  },
+];
+
+// ─── Themes section ───────────────────────────────────────────────────────────
+
+function ThemesSection() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [selected, setSelected] = useState("midnight");
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStart = useRef({ x: 0, scrollLeft: 0 });
+
+  const onMouseDown = (e: React.MouseEvent) => {
+    if (!trackRef.current) return;
+    setIsDragging(true);
+    dragStart.current = {
+      x: e.pageX - trackRef.current.offsetLeft,
+      scrollLeft: trackRef.current.scrollLeft,
+    };
+  };
+  const onMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !trackRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - trackRef.current.offsetLeft;
+    trackRef.current.scrollLeft =
+      dragStart.current.scrollLeft - (x - dragStart.current.x);
+  };
+  const onMouseUp = () => setIsDragging(false);
+
+  const active = THEMES.find((t) => t.name === selected)!;
+
+  return (
+    <section className="py-24 px-6 border-t border-border overflow-hidden">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+          <div>
+            <p
+              className="text-xs font-medium tracking-widest uppercase mb-3"
+              style={{
+                color: "#00e676",
+                fontFamily: "'JetBrains Mono', monospace",
+              }}
+            >
+              Themes
+            </p>
+            <h2
+              className="text-3xl lg:text-4xl font-bold tracking-tight"
+              style={{
+                fontFamily: "'Outfit', sans-serif",
+                letterSpacing: "-0.025em",
+              }}
+            >
+              8 themes. Your code,{" "}
+              <span style={{ color: "#00e676" }}>your style.</span>
+            </h2>
+          </div>
+          <p className="text-sm max-w-xs" style={{ color: "#555" }}>
+            3 themes on Free. All 8 — plus every future release — on Pro.
+          </p>
+        </div>
+
+        {/* Scrollable track */}
+        <div className="relative">
+          {/* left fade */}
+          <div
+            className="absolute left-0 top-0 bottom-0 w-12 z-10 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(to right,  rgb(8 8 8 / 79%), transparent)",
+            }}
+          />
+          {/* right fade */}
+          <div
+            className="absolute right-0 top-0 bottom-0 w-12 z-10 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(to left,  rgb(8 8 8 / 79%), transparent)",
+            }}
+          />
+
+          <div
+            ref={trackRef}
+            className="flex gap-4 overflow-x-auto pb-4 select-none"
+            style={{
+              cursor: isDragging ? "grabbing" : "grab",
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}
+            onMouseDown={onMouseDown}
+            onMouseMove={onMouseMove}
+            onMouseUp={onMouseUp}
+            onMouseLeave={onMouseUp}
+          >
+            {THEMES.map((theme) => {
+              const isActive = theme.name === selected;
+              // Cycle through the theme's real token colors for each fake
+              // line instead of a single accent+opacity — closer to how
+              // actual multi-colored syntax highlighting reads at a glance.
+              const lineWidths = [0.7, 1, 0.55, 0.85, 0.6];
+
+              return (
+                <button
+                  key={theme.name}
+                  onClick={() => setSelected(theme.name)}
+                  className="shrink-0 rounded-xl overflow-hidden transition-all text-left"
+                  style={{
+                    width: 240,
+                    border: isActive
+                      ? "1px solid rgba(0,230,118,0.45)"
+                      : "1px solid rgba(255,255,255,0.07)",
+                    outline: "none",
+                    transform: isActive ? "scale(1.02)" : "scale(1)",
+                    boxShadow: isActive
+                      ? "0 0 24px rgba(0,230,118,0.1)"
+                      : "none",
+                    background: "#0a0a0a",
+                  }}
+                >
+                  {/* Minimalist swatch preview — no images, loads instantly */}
+                  <div
+                    className="w-full overflow-hidden"
+                    style={{ height: 160, background: theme.bg }}
+                  >
+                    <div className="w-full h-full flex flex-col justify-end p-4 gap-2">
+                      {/* Fake code lines, colored from the theme's real palette */}
+                      <div className="space-y-1.5">
+                        {lineWidths.map((w, i) => (
+                          <div
+                            key={i}
+                            className="rounded-full h-2"
+                            style={{
+                              width: `${w * 100}%`,
+                              background:
+                                theme.swatches[i % theme.swatches.length],
+                              opacity: 0.85,
+                            }}
+                          />
+                        ))}
+                      </div>
+                      <div className="flex gap-1.5 mt-2">
+                        {theme.swatches.map((c) => (
+                          <span
+                            key={c}
+                            className="w-4 h-4 rounded-full border border-black/20"
+                            style={{ background: c }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Label */}
+                  <div
+                    className="px-4 py-3 flex items-center justify-between"
+                    style={{
+                      background: "#0f0f0f",
+                      borderTop: "1px solid rgba(255,255,255,0.05)",
+                    }}
+                  >
+                    <div>
+                      <p
+                        className="text-sm font-semibold"
+                        style={{
+                          fontFamily: "'JetBrains Mono', monospace",
+                          color: isActive ? "#00e676" : "#f0f0f0",
+                        }}
+                      >
+                        {theme.name}
+                      </p>
+                      <p
+                        className="text-[10px] mt-0.5"
+                        style={{ color: "#444" }}
+                      >
+                        {theme.desc}
+                      </p>
+                    </div>
+                    <span
+                      className="text-[10px] font-semibold px-2 py-0.5 rounded-full"
+                      style={{
+                        background:
+                          theme.plan === "Pro"
+                            ? "rgba(0,230,118,0.1)"
+                            : "rgba(255,255,255,0.05)",
+                        color: theme.plan === "Pro" ? "#00e676" : "#555",
+                        fontFamily: "'JetBrains Mono', monospace",
+                      }}
+                    >
+                      {theme.plan}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Selected theme CLI hint */}
+        <div
+          className="mt-6 rounded-lg px-4 py-3 flex items-center gap-3 text-sm max-w-md"
+          style={{
+            background: "#0a0a0a",
+            border: "1px solid rgba(255,255,255,0.06)",
+          }}
+        >
+          <span
+            style={{
+              color: "#00e676",
+              fontFamily: "'JetBrains Mono', monospace",
+            }}
+          >
+            $
+          </span>
+          <code
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              color: "#f0f0f0",
+            }}
+          >
+            syntaxshot file.ts{" "}
+            <span style={{ color: "#c3e88d" }}>--theme {active.name}</span>
+          </code>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ─── Navbar (shared) ──────────────────────────────────────────────────────────
 
 export function Navbar({ activePath }: { activePath?: string }) {
@@ -515,7 +808,8 @@ export default function Landing() {
               className="text-lg leading-relaxed max-w-md"
               style={{ color: "#777" }}
             >
-              Generate beautiful syntax-highlighted code screenshots with a single command. Free to get started.
+              Generate beautiful syntax-highlighted code screenshots with a
+              single command. Free to get started.
             </p>
 
             <div
@@ -780,6 +1074,9 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* ── Themes ── */}
+      <ThemesSection />
+
       {/* ── Pricing ── */}
       <section id="pricing" className="py-24 px-6 border-t border-border">
         <div className="max-w-6xl mx-auto">
@@ -915,7 +1212,7 @@ export default function Landing() {
                 <p className="text-xs" style={{ color: "#555" }}>
                   Activate with a license key on any machine.
                 </p>
-                 <p className="text-xs" style={{ color: "#555" }}>
+                <p className="text-xs" style={{ color: "#555" }}>
                   Special Launch Prices!
                 </p>
               </div>
