@@ -41,7 +41,7 @@ const HOW_IT_WORKS = [
     step: "03",
     title: "Capture",
     cmd: "syntaxshot path/to/file.js",
-    desc: "Pass a file and get a syntax-highlighted image in ./syntaxshots. On Pro, pass a folder instead.",
+    desc: "Pass a file and get your code to image instantly.",
   },
 ];
 
@@ -67,7 +67,7 @@ const FEATURE_CARDS = [
   {
     icon: <Terminal size={18} />,
     title: "Single-file capture",
-    body: "Pass any file path and get a pixel-perfect image instantly. Works with any language shiki supports.",
+    body: "Pass any file path and get your code to image instantly. Works with any language shiki supports.",
     badge: "Free + Pro",
   },
   {
@@ -103,9 +103,27 @@ const FEATURE_CARDS = [
 ];
 
 const PRO_BILLING = [
-  { id: "monthly", label: "Monthly", price: "$5", oldPrice: "$7", sub: "per month" },
-  { id: "quarterly", label: "Quarterly", price: "$13", oldPrice: "$18", sub: "per 3 months" },
-  { id: "annual", label: "Annual", price: "$35", oldPrice: "$60", sub: "per year" },
+  {
+    id: "monthly",
+    label: "Monthly",
+    price: "$5",
+    oldPrice: "$7",
+    sub: "per month",
+  },
+  {
+    id: "quarterly",
+    label: "Quarterly",
+    price: "$13",
+    oldPrice: "$18",
+    sub: "per 3 months",
+  },
+  {
+    id: "annual",
+    label: "Annual",
+    price: "$35",
+    oldPrice: "$60",
+    sub: "per year",
+  },
 ] as const;
 
 const STRIPE_PAYMENT_LINKS: Record<BillingId, string> = {
@@ -717,9 +735,9 @@ export function Footer() {
 
 export default function Landing() {
   useSeo({
-    title: "SyntaxShot — Code Screenshots from Your Terminal",
+    title: "Code to Image CLI Tool — SyntaxShot",
     description:
-      "Generate beautiful syntax-highlighted code screenshots with a single command. Free to get started.",
+      "The ultimate code to image converter straight from your terminal. Generate beautiful, syntax-highlighted code screenshots instantly with one command.",
     path: "/",
   });
   const [billing, setBilling] = useState<BillingId>("monthly");
@@ -799,17 +817,16 @@ export default function Landing() {
                 letterSpacing: "-0.03em",
               }}
             >
-              Capture code screenshots with
-              <br />
-              <span style={{ color: "#00e676" }}>one command. </span>
+              The fastest <span style={{ color: "#00e676" }}>code to image</span> CLI tool.
+              
             </h1>
 
             <p
               className="text-lg leading-relaxed max-w-md"
               style={{ color: "#777" }}
             >
-              Generate beautiful syntax-highlighted code screenshots with a
-              single command. Free to get started.
+              Generate beautiful syntax-highlighted code screenshots with 
+              <span style={{ color: "#00e676" }}> a single command.</span> Free to get started.
             </p>
 
             <div
@@ -1370,7 +1387,8 @@ export default function Landing() {
                   fontFamily: "'Outfit', sans-serif",
                 }}
               >
-                <Clipboard size={13} /> Copy install command <ArrowRight size={14} />
+                <Clipboard size={13} /> Copy install command{" "}
+                <ArrowRight size={14} />
               </button>
               <span
                 className={`text-[11px] font-medium ml-3 transition-opacity duration-200 ${copiedId === "cta" ? "opacity-100" : "opacity-0"}`}
