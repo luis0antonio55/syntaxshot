@@ -825,7 +825,7 @@ export default function Landing() {
               className="text-lg leading-relaxed max-w-md"
               style={{ color: "#777" }}
             >
-              Generate beautiful syntax-highlighted code screenshots with 
+              Generate beautiful syntax-highlighted code-to-image screenshots with 
               <span style={{ color: "#00e676" }}> a single command.</span> Free to get started.
             </p>
 
