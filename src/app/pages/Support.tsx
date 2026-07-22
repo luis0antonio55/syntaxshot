@@ -174,7 +174,7 @@ export default function Support() {
                 style={{ color: "#a3a3a3" }}
               >
                 Send a message, report an issue, or ask a billing question. We
-                reply from{" "}
+                reply from
                 <span
                   className="mx-1"
                   style={{ color: "#00e676" }}
@@ -182,7 +182,7 @@ export default function Support() {
                     __html: `<!-- email_off -->${SUPPORT_EMAIL}<!-- /email_off -->`,
                   }}
                 />{" "}
-                and use Resend behind the scenes.
+                
               </p>
             </div>
 
@@ -310,17 +310,7 @@ export default function Support() {
                   Reach the team
                 </h2>
               </div>
-              <div
-                className="hidden sm:flex items-center gap-2 text-xs px-3 py-2 rounded-full"
-                style={{
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.06)",
-                  color: "#9e9e9e",
-                }}
-              >
-                <span style={{ color: "#00e676" }}>●</span>
-                Resend enabled
-              </div>
+           
             </div>
 
             <form className="space-y-4" onSubmit={handleSubmit}>
@@ -483,7 +473,7 @@ export default function Support() {
           </div>
         </section>
 
-      <section className="px-6 pb-16">
+      <section className="px-6 pt-6 md:pt-10 pb-16">
         <div
           className="max-w-6xl mx-auto rounded-2xl border p-6 md:p-8"
           style={{
@@ -549,7 +539,7 @@ export default function Support() {
       </section>
 
       {/* ── Common questions ── */}
-      <section className="px-6 pb-20">
+      <section className="px-6 pt-10 md:pt-14 pb-20 border-t border-border mt-4">
         <div className="max-w-6xl mx-auto">
           <p
             className="text-xs font-medium tracking-widest uppercase mb-3"
