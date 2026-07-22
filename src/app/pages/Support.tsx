@@ -174,10 +174,14 @@ export default function Support() {
                 style={{ color: "#777" }}
               >
                 Send a message, report an issue, or ask a billing question. We
-                reply from
-                <span className="mx-1" style={{ color: "#00e676" }}>
-                  {SUPPORT_EMAIL}
-                </span>
+                reply from{" "}
+                <span
+                  className="mx-1"
+                  style={{ color: "#00e676" }}
+                  dangerouslySetInnerHTML={{
+                    __html: `<!-- email_off -->${SUPPORT_EMAIL}<!-- /email_off -->`,
+                  }}
+                />{" "}
                 and use Resend behind the scenes.
               </p>
             </div>
@@ -222,9 +226,11 @@ export default function Support() {
                     color: "#f0f0f0",
                   }}
                 >
-                  <span style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                    {SUPPORT_EMAIL}
-                  </span>
+                  <span style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                    dangerouslySetInnerHTML={{
+                      __html: `<!-- email_off -->${SUPPORT_EMAIL}<!-- /email_off -->`,
+                    }}
+                  />
                   <span
                     className="inline-flex items-center gap-1 text-xs"
                     style={{ color: copied ? "#00e676" : "#666" }}
@@ -467,9 +473,10 @@ export default function Support() {
                 <a
                   href={`mailto:${SUPPORT_EMAIL}`}
                   className="transition-colors hover:text-foreground"
-                >
-                  Email directly at {SUPPORT_EMAIL}
-                </a>
+                  dangerouslySetInnerHTML={{
+                    __html: `<!-- email_off -->Email directly at ${SUPPORT_EMAIL}<!-- /email_off -->`,
+                  }}
+                />
               </div>
             </form>
           </div>
@@ -532,10 +539,77 @@ export default function Support() {
                   color: "#080808",
                   fontFamily: "'Outfit', sans-serif",
                 }}
-              >
-                Open email app
-              </a>
+                dangerouslySetInnerHTML={{
+                  __html: `<!-- email_off -->Open email app<!-- /email_off -->`,
+                }}
+              />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Common questions ── */}
+      <section className="px-6 pb-20">
+        <div className="max-w-6xl mx-auto">
+          <p
+            className="text-xs font-medium tracking-widest uppercase mb-3"
+            style={{ color: "#00e676", fontFamily: "'JetBrains Mono', monospace" }}
+          >
+            Common questions
+          </p>
+          <h2
+            className="text-2xl font-bold mb-8 tracking-tight"
+            style={{ fontFamily: "'Outfit', sans-serif", letterSpacing: "-0.02em" }}
+          >
+            Before you reach out, check these first.
+          </h2>
+          <div
+            className="grid md:grid-cols-2 gap-6"
+            style={{ color: "#888" }}
+          >
+            {[
+              {
+                q: "Where do I find my license key?",
+                a: "Your license key is emailed to you immediately after purchase. Search your inbox for an email from support@syntaxshot.dev. If it hasn't arrived within a few minutes, check your spam folder.",
+              },
+              {
+                q: "How do I activate Pro on a new machine?",
+                a: "Run syntaxshot login SYNX-XXXX-XXXX-XXXX in your terminal. The key validates against the license server and caches the result locally. You can activate the same key on multiple machines for personal use.",
+              },
+              {
+                q: "I hit the 10-screenshot Free limit. What now?",
+                a: "The usage counter is stored per project directory in .syntaxshot-usage.json. Running from a different folder resets it. To remove the limit entirely, upgrade to Pro and activate your key.",
+              },
+              {
+                q: "The CLI command is not found after install.",
+                a: "Make sure your global npm bin directory is in your PATH. Run npm bin -g to find the path, then add it to your shell profile (~/.zshrc or ~/.bashrc) and restart your terminal.",
+              },
+              {
+                q: "Can I get a refund?",
+                a: "Yes. If SyntaxShot doesn't work for your setup, contact us within 14 days of purchase and we'll issue a full refund — no questions asked.",
+              },
+              {
+                q: "Does SyntaxShot work offline?",
+                a: "Free plan features work fully offline. Pro features rely on a license check every 24 hours, but a previously validated license stays active for up to 7 days without a network connection.",
+              },
+            ].map(({ q, a }) => (
+              <div
+                key={q}
+                className="rounded-xl p-6 space-y-2"
+                style={{
+                  background: "#0a0a0a",
+                  border: "1px solid rgba(255,255,255,0.06)",
+                }}
+              >
+                <p
+                  className="text-sm font-semibold"
+                  style={{ fontFamily: "'Outfit', sans-serif", color: "#f0f0f0" }}
+                >
+                  {q}
+                </p>
+                <p className="text-sm leading-6">{a}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
