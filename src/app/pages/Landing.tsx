@@ -165,7 +165,7 @@ function CodeWindow({
           className="w-3 h-3 rounded-full"
           style={{ background: "#28c840" }}
         />
-        <span className="ml-3 text-[11px]" style={{ color: "#555" }}>
+        <span className="ml-3 text-[11px]" style={{ color: "#9a9a9a" }}>
           src/components/Button.tsx
         </span>
       </div>
@@ -216,7 +216,7 @@ function BadgePill({ label }: { label: string }) {
       className="text-[10px] font-semibold px-2 py-0.5 rounded-full"
       style={{
         background: isPro ? "rgba(0,230,118,0.12)" : "rgba(255,255,255,0.06)",
-        color: isPro ? "#00e676" : "#666",
+        color: isPro ? "#00e676" : "#9e9e9e",
         fontFamily: "'JetBrains Mono', monospace",
       }}
     >
@@ -419,7 +419,7 @@ function ThemesSection() {
               <span style={{ color: "#00e676" }}>your style.</span>
             </h2>
           </div>
-          <p className="text-sm max-w-xs" style={{ color: "#555" }}>
+          <p className="text-sm max-w-xs" style={{ color: "#9a9a9a" }}>
             3 themes on Free. All 8 — plus every future release — on Pro.
           </p>
         </div>
@@ -534,7 +534,7 @@ function ThemesSection() {
                       </p>
                       <p
                         className="text-[10px] mt-0.5"
-                        style={{ color: "#444" }}
+                        style={{ color: "#8f8f8f" }}
                       >
                         {theme.desc}
                       </p>
@@ -546,7 +546,7 @@ function ThemesSection() {
                           theme.plan === "Pro"
                             ? "rgba(0,230,118,0.1)"
                             : "rgba(255,255,255,0.05)",
-                        color: theme.plan === "Pro" ? "#00e676" : "#555",
+                        color: theme.plan === "Pro" ? "#00e676" : "#9a9a9a",
                         fontFamily: "'JetBrains Mono', monospace",
                       }}
                     >
@@ -619,7 +619,7 @@ export function Navbar({ activePath }: { activePath?: string }) {
               key={l.label}
               to={l.to}
               className="text-sm transition-colors hover:text-foreground"
-              style={{ color: activePath === l.to ? "#f0f0f0" : "#666" }}
+              style={{ color: activePath === l.to ? "#f0f0f0" : "#9e9e9e" }}
             >
               {l.label}
             </Link>
@@ -641,7 +641,7 @@ export function Navbar({ activePath }: { activePath?: string }) {
           <button
             className="md:hidden p-1 text-sm"
             onClick={() => setMenuOpen(!menuOpen)}
-            style={{ color: "#666" }}
+            style={{ color: "#9e9e9e" }}
           >
             {menuOpen ? "✕" : "☰"}
           </button>
@@ -658,7 +658,7 @@ export function Navbar({ activePath }: { activePath?: string }) {
               key={l.label}
               to={l.to}
               className="text-sm"
-              style={{ color: "#666" }}
+              style={{ color: "#9e9e9e" }}
             >
               {l.label}
             </Link>
@@ -697,7 +697,7 @@ export function Footer() {
           >
             SyntaxShot
           </span>
-          <span className="text-xs ml-2" style={{ color: "#333" }}>
+          <span className="text-xs ml-2" style={{ color: "#8a8a8a" }}>
             © 2026
           </span>
         </div>
@@ -710,7 +710,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs transition-colors hover:text-foreground"
-                style={{ color: "#444" }}
+                style={{ color: "#8f8f8f" }}
               >
                 {l.label}
               </a>
@@ -719,7 +719,7 @@ export function Footer() {
                 key={l.label}
                 to={l.to}
                 className="text-xs transition-colors hover:text-foreground"
-                style={{ color: "#444" }}
+                style={{ color: "#8f8f8f" }}
               >
                 {l.label}
               </Link>
@@ -801,6 +801,9 @@ export default function Landing() {
     >
       <Navbar activePath="/" />
 
+      {/* Wrap page content in a <main> landmark so screen readers can jump
+          straight to it (fixes Lighthouse "landmark-one-main"). */}
+      <main>
       {/* ── Hero ── */}
       <section className="pt-32 pb-24 px-6">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
@@ -823,7 +826,7 @@ export default function Landing() {
 
             <p
               className="text-lg leading-relaxed max-w-md"
-              style={{ color: "#777" }}
+              style={{ color: "#a3a3a3" }}
             >
               Generate beautiful syntax-highlighted code-to-image screenshots with 
               <span style={{ color: "#00e676" }}> a single command.</span> Free to get started.
@@ -836,7 +839,7 @@ export default function Landing() {
                 fontFamily: "'JetBrains Mono', monospace",
               }}
             >
-              <div className="text-xs" style={{ color: "#333" }}>
+              <div className="text-xs" style={{ color: "#8a8a8a" }}>
                 ~ my-project
               </div>
               <div className="flex items-center gap-2 text-sm">
@@ -845,10 +848,10 @@ export default function Landing() {
               </div>
               {typedCmd.length === fullCmd.length && (
                 <div className="pt-1 space-y-1">
-                  <div className="text-xs" style={{ color: "#444" }}>
+                  <div className="text-xs" style={{ color: "#8f8f8f" }}>
                     Scanning ./src… 23 capturable files found.
                   </div>
-                  <div className="text-xs" style={{ color: "#444" }}>
+                  <div className="text-xs" style={{ color: "#8f8f8f" }}>
                     Generate 23 images? (y/n)
                   </div>
                   <div className="text-xs flex items-center gap-1.5">
@@ -925,7 +928,7 @@ export default function Landing() {
               <div
                 className="text-xs"
                 style={{
-                  color: "#444",
+                  color: "#8f8f8f",
                   fontFamily: "'JetBrains Mono', monospace",
                 }}
               >
@@ -985,7 +988,7 @@ export default function Landing() {
                   className="text-4xl font-black"
                   style={{
                     fontFamily: "'Outfit', sans-serif",
-                    color: "#1a1a1a",
+                    color: "#6a6a6a",
                   }}
                 >
                   {step.step}
@@ -1009,7 +1012,7 @@ export default function Landing() {
                 </div>
                 <p
                   className="text-sm leading-relaxed"
-                  style={{ color: "#555" }}
+                  style={{ color: "#9a9a9a" }}
                 >
                   {step.desc}
                 </p>
@@ -1079,7 +1082,7 @@ export default function Landing() {
                 </h3>
                 <p
                   className="text-sm leading-relaxed"
-                  style={{ color: "#555" }}
+                  style={{ color: "#9a9a9a" }}
                 >
                   {f.body}
                 </p>
@@ -1132,7 +1135,7 @@ export default function Landing() {
                 >
                   Free
                 </p>
-                <p className="text-xs" style={{ color: "#555" }}>
+                <p className="text-xs" style={{ color: "#9a9a9a" }}>
                   No credit card. No expiry.
                 </p>
               </div>
@@ -1146,7 +1149,7 @@ export default function Landing() {
                 >
                   $0
                 </div>
-                <div className="text-xs mt-1" style={{ color: "#444" }}>
+                <div className="text-xs mt-1" style={{ color: "#8f8f8f" }}>
                   forever
                 </div>
               </div>
@@ -1155,7 +1158,7 @@ export default function Landing() {
                   <li
                     key={f}
                     className="flex items-start gap-2.5 text-sm"
-                    style={{ color: "#777" }}
+                    style={{ color: "#a3a3a3" }}
                   >
                     <Check
                       size={13}
@@ -1223,10 +1226,10 @@ export default function Landing() {
                 >
                   Pro
                 </p>
-                <p className="text-xs" style={{ color: "#555" }}>
+                <p className="text-xs" style={{ color: "#9a9a9a" }}>
                   Activate with a license key on any machine.
                 </p>
-                <p className="text-xs" style={{ color: "#555" }}>
+                <p className="text-xs" style={{ color: "#9a9a9a" }}>
                   Special Launch Prices!
                 </p>
               </div>
@@ -1245,7 +1248,7 @@ export default function Landing() {
                         billing === b.id
                           ? "1px solid rgba(0,230,118,0.25)"
                           : "1px solid rgba(255,255,255,0.06)",
-                      color: billing === b.id ? "#f0f0f0" : "#666",
+                      color: billing === b.id ? "#f0f0f0" : "#9e9e9e",
                     }}
                   >
                     <span
@@ -1262,20 +1265,20 @@ export default function Landing() {
                     >
                       <span
                         className="text-xs line-through"
-                        style={{ color: "#555" }}
+                        style={{ color: "#9a9a9a" }}
                       >
                         {b.oldPrice}
                       </span>
                       <span
                         className="font-bold text-lg"
                         style={{
-                          color: billing === b.id ? "#00e676" : "#555",
+                          color: billing === b.id ? "#00e676" : "#9a9a9a",
                           letterSpacing: "-0.02em",
                         }}
                       >
                         {b.price}
                       </span>
-                      <span className="text-xs" style={{ color: "#444" }}>
+                      <span className="text-xs" style={{ color: "#8f8f8f" }}>
                         {b.sub}
                       </span>
                     </span>
@@ -1332,7 +1335,7 @@ export default function Landing() {
               $
             </span>
             <div>
-              <span style={{ color: "#555" }}>
+              <span style={{ color: "#9a9a9a" }}>
                 After purchase, activate on any machine with:{" "}
               </span>
               <code
@@ -1370,7 +1373,7 @@ export default function Landing() {
           </h2>
           <p
             className="text-sm mb-8 max-w-sm mx-auto"
-            style={{ color: "#555" }}
+            style={{ color: "#9a9a9a" }}
           >
             Free forever for individual file captures. Upgrade to Pro for
             unlimited folder scans.
@@ -1404,13 +1407,14 @@ export default function Landing() {
             <Link
               to="/docs"
               className="text-sm transition-colors hover:text-foreground"
-              style={{ color: "#444", fontFamily: "'Outfit', sans-serif" }}
+              style={{ color: "#8f8f8f", fontFamily: "'Outfit', sans-serif" }}
             >
               Read the docs →
             </Link>
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

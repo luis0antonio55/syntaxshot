@@ -1,0 +1,17 @@
+# SyntaxShot
+
+> SyntaxShot is a Node.js CLI tool that turns source code into beautiful, syntax-highlighted image screenshots directly from your terminal. Free for single-file captures; Pro adds folder scans, Git auto-detection, SVG export and more themes.
+
+## Product
+
+- [Homepage](https://syntaxshot.dev/): Overview, features, themes and pricing.
+- [Pricing](https://syntaxshot.dev/#pricing): Free and Pro plans.
+
+## Documentation
+
+- [Docs](https://syntaxshot.dev/docs): Install and usage guide for the SyntaxShot CLI, from the first command to advanced Pro folder-scanning.
+- [Support](https://syntaxshot.dev/support): Contact support for CLI issues, billing or feature requests.
+
+## Source
+
+- [GitHub repository](https://github.com/luis0antonio55/syntaxshot): Source code and issue tracker.

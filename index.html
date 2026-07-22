@@ -55,14 +55,19 @@
     2. The <link rel="preload"> fetches the CSS as a high-priority
        but non-render-blocking resource.
     3. The onload swap makes it a real stylesheet once downloaded.
-    4. <noscript> is a plain fallback for JS-disabled crawlers.
+    4. display=optional (instead of swap) prevents Cumulative Layout Shift:
+       if the web font is not ready within the browser's short block period,
+       the system fallback is kept and never swapped, so text never reflows.
+       Trade-off: on a cold (uncached) first visit the branded fonts may not
+       appear until a later navigation. Change back to display=swap if the
+       brand typography on first paint matters more than CLS.
   -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     rel="preload"
     as="style"
-    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=optional"
     onload="this.onload=null;this.rel='stylesheet'"
   />
 

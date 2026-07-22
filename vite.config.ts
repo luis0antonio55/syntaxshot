@@ -145,6 +145,18 @@ export default defineConfig(({ mode }) => {
           let html = fs.readFileSync(filePath, 'utf-8')
           const original = html
 
+          // Drop the modulepreload for the SSR/prerender-only chunk.
+          // vite-prerender-plugin registers src/prerender.tsx as a build input,
+          // so Vite emits a <link rel="modulepreload"> for its chunk in every
+          // HTML file. That chunk bundles react-dom/server (renderToString) and
+          // is never executed on the client, so preloading it only downloads
+          // dead weight — it inflates "unused JavaScript" and steals bandwidth
+          // from the LCP resource. Removing the tag does not affect hydration.
+          html = html.replace(
+            /\s*<link rel="modulepreload"(?:\s+crossorigin)?\s+href="\/assets\/prerender-[^"]+\.js"\s*>/g,
+            '',
+          )
+
           // Replace every blocking /assets/*.css with a non-blocking preload.
           // Idempotent — skip files that already have a preload for this href.
           html = html.replace(

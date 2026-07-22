@@ -90,7 +90,7 @@ function CodeBlock({
         >
           <span
             style={{
-              color: "#555",
+              color: "#9a9a9a",
               fontFamily: "'JetBrains Mono', monospace",
               fontSize: 11,
             }}
@@ -114,7 +114,7 @@ function CodeBlock({
           className="absolute top-3 right-3 px-2.5 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-all"
           style={{
             background: "rgba(255,255,255,0.06)",
-            color: copied ? "#00e676" : "#666",
+            color: copied ? "#00e676" : "#9e9e9e",
             border: "1px solid rgba(255,255,255,0.08)",
             fontFamily: "'JetBrains Mono', monospace",
           }}
@@ -151,7 +151,7 @@ function JsonBlock({
         >
           <span
             style={{
-              color: "#555",
+              color: "#9a9a9a",
               fontFamily: "'JetBrains Mono', monospace",
               fontSize: 11,
             }}
@@ -316,12 +316,12 @@ function FaqItem({ q, children }: { q: string; children: React.ReactNode }) {
           className="shrink-0 transition-transform"
           style={{
             transform: open ? "rotate(90deg)" : "rotate(0deg)",
-            color: "#444",
+            color: "#8f8f8f",
           }}
         />
       </button>
       {open && (
-        <div className="pb-5 text-sm leading-7" style={{ color: "#666" }}>
+        <div className="pb-5 text-sm leading-7" style={{ color: "#9e9e9e" }}>
           {children}
         </div>
       )}
@@ -384,7 +384,7 @@ export default function Docs() {
             <p
               className="text-xs font-medium tracking-widest uppercase mb-4"
               style={{
-                color: "#444",
+                color: "#8f8f8f",
                 fontFamily: "'JetBrains Mono', monospace",
               }}
             >
@@ -398,7 +398,7 @@ export default function Docs() {
                   style={{
                     fontFamily: "'Outfit', sans-serif",
                     fontWeight: 500,
-                    color: activeId === section.id ? "#f0f0f0" : "#555",
+                    color: activeId === section.id ? "#f0f0f0" : "#9a9a9a",
                     background:
                       activeId === section.id
                         ? "rgba(255,255,255,0.04)"
@@ -414,7 +414,7 @@ export default function Docs() {
                     className="w-full text-left pl-5 pr-2 py-1 rounded text-xs transition-colors"
                     style={{
                       fontFamily: "'Outfit', sans-serif",
-                      color: activeId === sub.id ? "#00e676" : "#444",
+                      color: activeId === sub.id ? "#00e676" : "#8f8f8f",
                     }}
                   >
                     {sub.label}
@@ -427,7 +427,7 @@ export default function Docs() {
               <Link
                 to="/#pricing"
                 className="inline-flex items-center gap-1.5 text-xs transition-colors hover:text-foreground"
-                style={{ color: "#444", fontFamily: "'Outfit', sans-serif" }}
+                style={{ color: "#8f8f8f", fontFamily: "'Outfit', sans-serif" }}
               >
                 Get Pro <ArrowRight size={11} />
               </Link>
@@ -541,7 +541,7 @@ npm link
                       key={h}
                       className="px-4 py-3 text-left text-xs font-semibold"
                       style={{
-                        color: "#555",
+                        color: "#9a9a9a",
                         fontFamily: "'Outfit', sans-serif",
                       }}
                     >
@@ -576,19 +576,19 @@ npm link
                       {short ? (
                         <InlineCode>{short}</InlineCode>
                       ) : (
-                        <span style={{ color: "#333" }}>—</span>
+                        <span style={{ color: "#8a8a8a" }}>—</span>
                       )}
                     </td>
                     <td
                       className="px-4 py-3 text-xs"
                       style={{
-                        color: "#555",
+                        color: "#9a9a9a",
                         fontFamily: "'JetBrains Mono', monospace",
                       }}
                     >
                       {def}
                     </td>
-                    <td className="px-4 py-3 text-xs" style={{ color: "#666" }}>
+                    <td className="px-4 py-3 text-xs" style={{ color: "#9e9e9e" }}>
                       {desc}
                     </td>
                   </tr>
@@ -701,7 +701,7 @@ Generate 31 images? (y/N)`}</CodeBlock>
                       key={h}
                       className="px-4 py-3 text-left text-xs font-semibold"
                       style={{
-                        color: "#555",
+                        color: "#9a9a9a",
                         fontFamily: "'Outfit', sans-serif",
                       }}
                     >
@@ -741,13 +741,13 @@ Generate 31 images? (y/N)`}</CodeBlock>
                     <td
                       className="px-4 py-3 text-xs"
                       style={{
-                        color: "#555",
+                        color: "#9a9a9a",
                         fontFamily: "'JetBrains Mono', monospace",
                       }}
                     >
                       {def}
                     </td>
-                    <td className="px-4 py-3 text-xs" style={{ color: "#666" }}>
+                    <td className="px-4 py-3 text-xs" style={{ color: "#9e9e9e" }}>
                       {desc}
                     </td>
                   </tr>
@@ -858,7 +858,7 @@ Generate 31 images? (y/N)`}</CodeBlock>
                         t.plan === "Pro"
                           ? "rgba(0,230,118,0.1)"
                           : "rgba(255,255,255,0.05)",
-                      color: t.plan === "Pro" ? "#00e676" : "#555",
+                      color: t.plan === "Pro" ? "#00e676" : "#9a9a9a",
                       fontFamily: "'JetBrains Mono', monospace",
                     }}
                   >
@@ -874,7 +874,7 @@ Generate 31 images? (y/N)`}</CodeBlock>
                 >
                   {t.name}
                 </p>
-                <p className="text-xs leading-5" style={{ color: "#555" }}>
+                <p className="text-xs leading-5" style={{ color: "#9a9a9a" }}>
                   {t.desc}
                 </p>
               </div>
@@ -1105,7 +1105,7 @@ npm install`}</CodeBlock>
               border: "1px solid rgba(0,230,118,0.1)",
             }}
           >
-            <p className="text-sm mb-4" style={{ color: "#555" }}>
+            <p className="text-sm mb-4" style={{ color: "#9a9a9a" }}>
               Need folder scanning and unlimited screenshots?
             </p>
             <Link

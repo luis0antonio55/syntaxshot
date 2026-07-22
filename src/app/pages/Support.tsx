@@ -52,7 +52,7 @@ function Field({
         {hint ? (
           <span
             className="text-[11px] uppercase tracking-[0.18em]"
-            style={{ color: "#555" }}
+            style={{ color: "#9a9a9a" }}
           >
             {hint}
           </span>
@@ -171,7 +171,7 @@ export default function Support() {
 
               <p
                 className="text-lg leading-relaxed max-w-xl"
-                style={{ color: "#777" }}
+                style={{ color: "#a3a3a3" }}
               >
                 Send a message, report an issue, or ask a billing question. We
                 reply from{" "}
@@ -211,7 +211,7 @@ export default function Support() {
                     >
                       Direct email
                     </p>
-                    <p className="text-xs" style={{ color: "#555" }}>
+                    <p className="text-xs" style={{ color: "#9a9a9a" }}>
                       Always available
                     </p>
                   </div>
@@ -234,7 +234,7 @@ export default function Support() {
                   />
                   <span
                     className="inline-flex items-center gap-1 text-xs"
-                    style={{ color: copied ? "#00e676" : "#666" }}
+                    style={{ color: copied ? "#00e676" : "#9e9e9e" }}
                   >
                     {copied ? <Check size={13} /> : <Copy size={13} />}
                     {copied ? "Copied" : "Copy"}
@@ -266,12 +266,12 @@ export default function Support() {
                     >
                       Response time
                     </p>
-                    <p className="text-xs" style={{ color: "#555" }}>
+                    <p className="text-xs" style={{ color: "#9a9a9a" }}>
                       Typical same-day reply
                     </p>
                   </div>
                 </div>
-                <p className="text-sm leading-6" style={{ color: "#777" }}>
+                <p className="text-sm leading-6" style={{ color: "#a3a3a3" }}>
                   Include your operating system, the exact command you ran, and
                   any error output. That gives us the fastest path to a useful
                   answer.
@@ -315,7 +315,7 @@ export default function Support() {
                 style={{
                   background: "rgba(255,255,255,0.04)",
                   border: "1px solid rgba(255,255,255,0.06)",
-                  color: "#666",
+                  color: "#9e9e9e",
                 }}
               >
                 <span style={{ color: "#00e676" }}>●</span>
@@ -468,7 +468,7 @@ export default function Support() {
 
               <div
                 className="flex flex-wrap items-center gap-3 pt-1 text-xs"
-                style={{ color: "#666" }}
+                style={{ color: "#9e9e9e" }}
               >
                 <span style={{ color: "#00e676" }}>→</span>
                 <a
@@ -482,7 +482,6 @@ export default function Support() {
             </form>
           </div>
         </section>
-      </main>
 
       <section className="px-6 pb-16">
         <div
@@ -512,7 +511,7 @@ export default function Support() {
               >
                 The faster you share details, the faster we can help.
               </h2>
-              <p className="text-sm max-w-2xl" style={{ color: "#777" }}>
+              <p className="text-sm max-w-2xl" style={{ color: "#a3a3a3" }}>
                 If something failed in the CLI, send the command, terminal
                 output, OS version, and the file path or folder you were trying
                 to capture.
@@ -612,6 +611,7 @@ export default function Support() {
           </div>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>
