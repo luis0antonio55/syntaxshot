@@ -180,9 +180,9 @@ The `vercel.json` configuration handles SPA routing:
 
 ## 🔗 Links
 
-- **Main CLI Tool**: [github.com/luis0antonio55/syntaxshot](https://github.com/luis0antonio55/syntaxshot)
-- **Live Website**: [syntaxshot.vercel.app](https://syntaxshot.vercel.app)
-- **Documentation**: [syntaxshot.vercel.app/docs](https://syntaxshot.vercel.app/docs)
+- **Main CLI Tool**: [https://github.com/luis0antonio55/syntaxshot](https://github.com/luis0antonio55/syntaxshot)
+- **Live Website**: [https://syntaxshot-page.vercel.app/](https://syntaxshot.vercel.app)
+- **Documentation**: [https://syntaxshot-page.vercel.app/docs](https://syntaxshot.vercel.app/docs)
 
 ---
 
