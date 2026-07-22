@@ -1,0 +1,21 @@
+{
+  "name": "SyntaxShot",
+  "short_name": "SyntaxShot",
+  "description": "Generate beautiful syntax-highlighted code screenshots with one command.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080808",
+  "theme_color": "#00e676",
+  "icons": [
+    {
+      "src": "/favicon/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -25,27 +25,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>SyntaxShot — Code screenshots with one command.</title>
-  <meta name="description"
-    content="Generate beautiful syntax-highlighted code-to-image screenshots directly from your CLI. Free for single-file captures. Upgrade to Pro for full project scans." />
+  <!--
+    title, description, canonical, og:title, og:description, og:url,
+    twitter:title and twitter:description are injected per-route at build
+    time by vite-prerender-plugin (src/prerender.tsx).
+    Do NOT add them here — duplicates confuse crawlers.
+  -->
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://syntaxshot.dev/" />
 
+  <!-- Shared OG / Twitter tags (same on every page) -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="SyntaxShot" />
-  <meta property="og:title" content="SyntaxShot — Code screenshots with one command." />
-  <meta property="og:description"
-    content="Generate beautiful syntax-highlighted code-to-image screenshots directly from your CLI. Free for single-file captures. Upgrade to Pro for full project scans." />
-  <meta property="og:url" content="https://syntaxshot.dev/" />
   <meta property="og:image" content="https://syntaxshot.dev/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="SyntaxShot — Code screenshots with one command." />
-  <meta name="twitter:description" content="Generate syntax-highlighted code screenshots straight from your CLI." />
   <meta name="twitter:image" content="https://syntaxshot.dev/og-image.png" />
-
 
   <script type="application/ld+json">
     {
@@ -82,6 +77,7 @@
       style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <div id="root"></div>
+  <script type="module" prerender src="/src/prerender.tsx"></script>
   <script type="module" src="/src/main.tsx"></script>
 </body>
 
