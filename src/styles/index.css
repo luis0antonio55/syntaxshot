@@ -1,3 +1,3 @@
-@import './fonts.css';
+/* fonts.css removed — Google Fonts are loaded non-blocking via <link preload> in index.html */
 @import './tailwind.css';
 @import './theme.css';

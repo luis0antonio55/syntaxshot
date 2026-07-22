@@ -2,17 +2,11 @@
 <html lang="en">
 
 <head>
-  <!-- Google Tag Manager -->
-  <script>(function (w, d, s, l, i) {
-      w[l] = w[l] || []; w[l].push({
-        'gtm.start':
-          new Date().getTime(), event: 'gtm.js'
-      }); var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-KTMQPCPC');</script>
-  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-site-verification" content="Bli7YE0Zg-GKHJfAKd_iOtWBrG8jOCcGmmilzhBFUlk" />
+
+  <!-- Favicons -->
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
@@ -21,9 +15,6 @@
   <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
   <link rel="manifest" href="/favicon/site.webmanifest" />
   <meta name="theme-color" content="#00e676" />
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!--
     title, description, canonical, og:title, og:description, og:url,
@@ -56,29 +47,69 @@
         { "@type": "Offer", "name": "Pro", "price": "5", "priceCurrency": "USD" }
       ]
     }
-    </script>
+  </script>
 
+  <!--
+    Google Fonts — non-blocking.
+    1. preconnect opens the socket early (no blocking).
+    2. The <link rel="preload"> fetches the CSS as a high-priority
+       but non-render-blocking resource.
+    3. The onload swap makes it a real stylesheet once downloaded.
+    4. <noscript> is a plain fallback for JS-disabled crawlers.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="preload"
+    as="style"
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+
+  <!-- Critical above-the-fold styles only -->
   <style>
-    html,
-    body {
-      height: 100%;
-      margin: 0;
-    }
-
-    #root {
-      height: 100%;
-    }
+    html, body { height: 100%; margin: 0; }
+    #root { height: 100%; }
+    /* Prevent invisible text while fonts load (display=swap handles this
+       for Google Fonts, but define fallbacks so layout shift is minimal) */
+    body { font-family: system-ui, sans-serif; background: #080808; color: #f0f0f0; }
   </style>
 </head>
 
 <body>
-  <!-- Google Tag Manager (noscript) -->
+  <!-- GTM noscript — keep as first child of body -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KTMQPCPC" height="0" width="0"
       style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
+
   <div id="root"></div>
+
   <script type="module" prerender src="/src/prerender.tsx"></script>
   <script type="module" src="/src/main.tsx"></script>
+
+  <!--
+    Google Tag Manager — deferred until after the page is interactive.
+    Loaded with requestIdleCallback (rIC) so it never blocks LCP.
+    Falls back to a 3 s setTimeout in browsers that don't support rIC.
+  -->
+  <script>
+    (function () {
+      function loadGTM() {
+        var w = window, d = document, s = 'script', l = 'dataLayer', i = 'GTM-KTMQPCPC';
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s);
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i;
+        f.parentNode.insertBefore(j, f);
+      }
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadGTM, { timeout: 3000 });
+      } else {
+        setTimeout(loadGTM, 3000);
+      }
+    })();
+  </script>
 </body>
 
 </html>

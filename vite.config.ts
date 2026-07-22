@@ -1,5 +1,6 @@
 import { defineConfig, loadEnv } from 'vite'
 import path from 'path'
+import fs from 'fs'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { vitePrerenderPlugin } from 'vite-prerender-plugin'
@@ -130,6 +131,47 @@ export default defineConfig(({ mode }) => {
       renderTarget: '#root',
       additionalPrerenderRoutes: ['/docs', '/support'],
     }),
+    // Make the bundled CSS non-render-blocking.
+    // vite-prerender-plugin writes HTML files directly to disk after all
+    // transformIndexHtml hooks, so we patch the final files in closeBundle.
+    {
+      name: 'non-blocking-css',
+      apply: 'build',
+      enforce: 'post',
+      closeBundle() {
+        const outDir = path.join(__dirname, 'dist')
+
+        function patchHtml(filePath: string) {
+          let html = fs.readFileSync(filePath, 'utf-8')
+          const original = html
+
+          // Replace every blocking /assets/*.css with a non-blocking preload.
+          // Idempotent — skip files that already have a preload for this href.
+          html = html.replace(
+            /<link rel="stylesheet"(?:\s+crossorigin)?\s+href="(\/assets\/[^"]+\.css)">/g,
+            (_match: string, href: string) => {
+              if (html.includes(`rel="preload" as="style" href="${href}"`)) return ''
+              return (
+                `<link rel="preload" as="style" href="${href}" onload="this.onload=null;this.rel='stylesheet'">` +
+                `<noscript><link rel="stylesheet" href="${href}"></noscript>`
+              )
+            },
+          )
+
+          if (html !== original) fs.writeFileSync(filePath, html, 'utf-8')
+        }
+
+        function walk(dir: string) {
+          for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+            const full = path.join(dir, entry.name)
+            if (entry.isDirectory()) walk(full)
+            else if (entry.name === 'index.html') patchHtml(full)
+          }
+        }
+
+        walk(outDir)
+      },
+    },
     {
       name: 'support-api-dev-server',
       configureServer(server) {
