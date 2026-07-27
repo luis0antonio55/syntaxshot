@@ -466,13 +466,9 @@ export default function Docs() {
           {/* ── Installation ── */}
           <SectionTitle id="installation">Installation</SectionTitle>
           <Para>
-            Clone the repo, install dependencies and link the global command.
+            Install the CLI globally via npm:
           </Para>
-          <CodeBlock filename="terminal">{`
-cd syntaxshot
-npm install
-npm link
-          `}</CodeBlock>
+          <CodeBlock filename="terminal">{`npm install -g syntaxshot-cli`}</CodeBlock>
           <Note>
             <InlineCode>@napi-rs/canvas</InlineCode> ships prebuilt binaries for
             Windows, macOS and Linux. You do{" "}
@@ -480,7 +476,7 @@ npm link
             Visual Studio Build Tools or any other native dependency.
           </Note>
           <Para>
-            Once linked, the <InlineCode>syntaxshot</InlineCode> command is
+            Once installed, the <InlineCode>syntaxshot</InlineCode> command is
             available globally in your shell. Verify it with:
           </Para>
           <CodeBlock>{`syntaxshot --version`}</CodeBlock>
@@ -598,8 +594,10 @@ npm link
           </div>
 
           <Warn>
-            The Free plan caps at{" "}
-            <strong style={{ color: "#f0f0f0" }}>10 screenshots</strong> total.
+            The Free plan is limited to{" "}
+            <strong style={{ color: "#f0f0f0" }}>20 screenshots per month</strong>.
+            Every capture requires an online connection to validate your quota
+            against the server.
           </Warn>
 
           <Divider />
@@ -921,11 +919,18 @@ Generate 31 images? (y/N)`}</CodeBlock>
 
           <SubTitle id="offline">Offline behavior</SubTitle>
           <Para>
-            If the license API is temporarily unreachable, a
-            previously-validated license keeps working for up to{" "}
-            <strong style={{ color: "#f0f0f0" }}>7 days</strong> without
-            connectivity. After that window, a network check is required to
-            resume Pro features.
+            The Free plan{" "}
+            <strong style={{ color: "#f0f0f0" }}>always requires an internet connection</strong>{" "}
+            to validate usage. Every capture is checked against the server in
+            real time — if the API is unreachable, the CLI will block until
+            connectivity is restored.
+          </Para>
+          <Para>
+            The Pro plan only needs to verify the license once every{" "}
+            <strong style={{ color: "#f0f0f0" }}>7 days</strong>. If the API is
+            temporarily unreachable, a previously-validated Pro license keeps
+            working within that window. After 7 days without a successful check,
+            a network connection is required to resume Pro features.
           </Para>
           <Note>
             You can override the API endpoint for local development:{" "}
@@ -949,10 +954,10 @@ Generate 31 images? (y/N)`}</CodeBlock>
             }}
           >
             <div className="px-6">
-              <FaqItem q="Command not found after running npm link">
+              <FaqItem q="Command not found after installation">
                 <p>
-                  Make sure <InlineCode>npm link</InlineCode> completed without
-                  errors. Then check that your global npm bin folder is in your{" "}
+                  Make sure the global install completed without errors. Then
+                  check that your global npm bin folder is in your{" "}
                   <InlineCode>PATH</InlineCode>:
                 </p>
                 <CodeBlock>{`npm bin -g    # prints the global bin path`}</CodeBlock>
@@ -961,8 +966,8 @@ Generate 31 images? (y/N)`}</CodeBlock>
                   <InlineCode>~/.bashrc</InlineCode>,{" "}
                   <InlineCode>~/.zshrc</InlineCode>, etc.) and restart your
                   terminal. On macOS with nvm, the path changes per Node version
-                  — re-run <InlineCode>npm link</InlineCode> after switching
-                  versions.
+                  — re-run <InlineCode>npm install -g syntaxshot-cli</InlineCode>{" "}
+                  after switching versions.
                 </p>
               </FaqItem>
 
@@ -983,16 +988,18 @@ npm install`}</CodeBlock>
                 </p>
               </FaqItem>
 
-              <FaqItem q="I've hit the 10-image Free plan limit">
+              <FaqItem q="I've hit the monthly Free plan limit">
                 <p>
-                  The usage counter lives in{" "}
-                  <InlineCode>.syntaxshot-usage.json</InlineCode> in the
-                  directory where you run the command. It is not global — each
-                  project folder has its own counter. Running syntaxshot from a
-                  different directory starts a fresh count.
+                  The Free plan allows{" "}
+                  <strong style={{ color: "#f0f0f0" }}>20 screenshots per month</strong>.
+                  The quota is enforced server-side — there is no local counter
+                  to reset. It resets automatically at the start of each
+                  calendar month.
                 </p>
                 <p className="mt-2">
-                  To continue without limits, upgrade to Pro and activate with{" "}
+                  Check your remaining quota with{" "}
+                  <InlineCode>syntaxshot account</InlineCode>. To continue
+                  without limits, upgrade to Pro and activate with{" "}
                   <InlineCode>syntaxshot login &lt;key&gt;</InlineCode>.
                 </p>
               </FaqItem>
@@ -1030,15 +1037,27 @@ npm install`}</CodeBlock>
 
               <FaqItem q="Pro features stopped working after being offline">
                 <p>
-                  The license is cached locally and valid for{" "}
+                  The Pro license is cached locally and valid for{" "}
                   <strong style={{ color: "#f0f0f0" }}>7 days</strong> without a
                   network check. After that window expires, a connection to the
-                  license API is required.
+                  license API is required to re-validate.
                 </p>
                 <p className="mt-2">
                   Reconnect to the internet and run any{" "}
                   <InlineCode>syntaxshot</InlineCode> command — it will
                   re-validate automatically and restore Pro features.
+                </p>
+              </FaqItem>
+
+              <FaqItem q="The Free plan won't work offline — is that expected?">
+                <p>
+                  Yes. The Free plan validates every capture against the server
+                  in real time. An active internet connection is always required
+                  to use the Free plan.
+                </p>
+                <p className="mt-2">
+                  If you need offline access, upgrade to Pro — it only requires
+                  a network check once every 7 days.
                 </p>
               </FaqItem>
 

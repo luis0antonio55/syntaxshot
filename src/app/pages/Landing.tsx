@@ -47,7 +47,7 @@ const HOW_IT_WORKS = [
 
 const FEATURES_FREE = [
   "Individual file capture",
-  "10 screenshots / month",
+  "20 screenshots / month",
   "PNG + JPG export",
   "3 built-in themes",
   "Config via .syntaxshotrc.json",
@@ -866,14 +866,20 @@ export default function Landing() {
             </div>
 
             <div className="flex items-center gap-4 flex-wrap">
+              <p
+                className="text-sm font-medium"
+                style={{ color: "#9a9a9a", fontFamily: "'Outfit', sans-serif" }}
+              >
+                Try for free:
+              </p>
               <div className="relative inline-flex items-center">
                 <button
                   type="button"
                   onClick={() => copyInstallCommand("hero")}
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded text-sm font-medium border border-border transition-all hover:border-white/20"
-                  style={{ color: "#888", fontFamily: "'Outfit', sans-serif" }}
+                  style={{ color: "#c3e88d", fontFamily: "'JetBrains Mono', monospace" }}
                 >
-                  <Clipboard size={13} /> Try for free: npm i syntaxshot-cli
+                  <Clipboard size={13} /> npm i syntaxshot-cli
                 </button>
                 <span
                   className={`text-[11px] font-medium ml-3 transition-opacity duration-200 ${copiedId === "hero" ? "opacity-100" : "opacity-0"}`}
@@ -1136,7 +1142,7 @@ export default function Landing() {
                   Free
                 </p>
                 <p className="text-xs" style={{ color: "#9a9a9a" }}>
-                  No credit card. No expiry.
+                  No credit card need it.
                 </p>
               </div>
               <div>
@@ -1173,16 +1179,16 @@ export default function Landing() {
                 <button
                   type="button"
                   onClick={() => copyInstallCommand("pricing-free")}
-                  className="w-full py-2.5 rounded text-sm font-semibold transition-all hover:opacity-80 active:scale-95"
+                  className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded text-sm font-semibold transition-all hover:opacity-80 active:scale-95"
                   style={{
-                    fontFamily: "'Outfit', sans-serif",
+                    fontFamily: "'JetBrains Mono', monospace",
                     background: "rgba(255,255,255,0.05)",
                     color: "#f0f0f0",
                     border: "1px solid rgba(255,255,255,0.08)",
                     cursor: "pointer",
                   }}
                 >
-                  npm i syntaxshot-cli
+                  <Clipboard size={13} /> npm i syntaxshot-cli
                 </button>
                 <span
                   className={`text-[11px] font-medium absolute right-3 top-3 transition-opacity duration-200 ${copiedId === "pricing-free" ? "opacity-100" : "opacity-0"}`}

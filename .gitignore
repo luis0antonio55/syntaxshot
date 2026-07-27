@@ -28,3 +28,6 @@ yarn-error.log*
 Thumbs.db
 .vercel
 .env*
+
+# Repomix output
+repomix-output-*.xml
