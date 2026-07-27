@@ -575,7 +575,15 @@ export default function Support() {
               },
               {
                 q: "Does SyntaxShot work offline?",
-                a: "Free plan features work fully offline. Pro features rely on a license check every 24 hours, but a previously validated license stays active for up to 7 days without a network connection.",
+                a: "The Free plan always requires an internet connection — every capture is validated against the server in real time. If the API is unreachable, the CLI blocks until connectivity is restored. Pro only needs a license check once every 7 days, so it works offline between validations.",
+              },
+              {
+                q: "I've hit the monthly Free plan limit. What now?",
+                a: "The Free plan allows 20 screenshots per month, enforced server-side. The quota resets automatically each calendar month. Run syntaxshot account to check remaining usage. Upgrade to Pro for unlimited captures.",
+              },
+              {
+                q: "Do I need to create an account for the Free plan?",
+                a: "No. On first launch the CLI automatically registers your machine using a privacy-friendly fingerprint (no MAC address, no admin permissions required). No sign-up, no email — just install and run.",
               },
             ].map(({ q, a }) => (
               <div

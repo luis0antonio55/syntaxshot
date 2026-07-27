@@ -131,11 +131,11 @@ export default defineConfig(({ mode }) => {
       renderTarget: '#root',
       additionalPrerenderRoutes: ['/docs', '/support'],
     }),
-    // Make the bundled CSS non-render-blocking.
+    // Post-process the emitted HTML files.
     // vite-prerender-plugin writes HTML files directly to disk after all
     // transformIndexHtml hooks, so we patch the final files in closeBundle.
     {
-      name: 'non-blocking-css',
+      name: 'html-postprocess',
       apply: 'build',
       enforce: 'post',
       closeBundle() {
@@ -157,18 +157,20 @@ export default defineConfig(({ mode }) => {
             '',
           )
 
-          // Replace every blocking /assets/*.css with a non-blocking preload.
-          // Idempotent — skip files that already have a preload for this href.
-          html = html.replace(
-            /<link rel="stylesheet"(?:\s+crossorigin)?\s+href="(\/assets\/[^"]+\.css)">/g,
-            (_match: string, href: string) => {
-              if (html.includes(`rel="preload" as="style" href="${href}"`)) return ''
-              return (
-                `<link rel="preload" as="style" href="${href}" onload="this.onload=null;this.rel='stylesheet'">` +
-                `<noscript><link rel="stylesheet" href="${href}"></noscript>`
-              )
-            },
-          )
+          // NOTE: We intentionally KEEP the main stylesheet render-blocking.
+          //
+          // The pages are prerendered to static HTML, but the only inline
+          // critical CSS in index.html covers colors and full-height — it has
+          // no layout rules (flex/grid/spacing/sizing). If the Tailwind bundle
+          // is loaded non-render-blocking (preload + onload swap), the browser
+          // paints the prerendered DOM unstyled first, then reflows the entire
+          // above-the-fold layout once the CSS arrives. That whole-page reflow
+          // was the source of the ~0.75 Cumulative Layout Shift.
+          //
+          // A single render-blocking <link rel="stylesheet"> means nothing
+          // paints until the layout styles are ready, so there is no shift.
+          // With FCP ~1.65s / LCP ~1.81s there is ample headroom for it, and
+          // eliminating a failing CLS is the better Core Web Vitals trade.
 
           if (html !== original) fs.writeFileSync(filePath, html, 'utf-8')
         }
