@@ -933,7 +933,8 @@ Generate 31 images? (y/N)`}</CodeBlock>
             a network connection is required to resume Pro features.
           </Para>
           <Note>
-            You can override the API endpoint for local development:{" "}
+            You can override the API endpoint for local development:{" "} 
+            <br></br>
             <InlineCode>
               {"export SYNTAXSHOT_API_URL=http://localhost:3000"}
             </InlineCode>
